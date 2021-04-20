@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="UIExpandTextView">
+        <attr name="text" format="string" />
+        <attr name="showLines" format="integer" />
+        <attr name="actionExpandText" format="string" />
+        <attr name="actionRetractText" format="string" />
+        <attr name="contentColor" format="color" />
+        <attr name="actionColor" format="color" />
+        <attr name="contentSize" format="dimension" />
+        <attr name="actionSize" format="dimension" />
+        <attr name="hasRetract" format="boolean" />
+        <attr name="actionImage" format="reference" />
+        <attr name="actionExpandImage" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="UICategoryRecyclerView">
+        <attr name="slidingTabBackgroundColor" format="color" />
+        <attr name="viewPagerBackgroundColor" format="color" />
+    </declare-styleable>
+
+</resources>

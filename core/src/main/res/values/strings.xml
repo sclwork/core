@@ -1,0 +1,49 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="app_name">core</string>
+
+    <string name="title_data_log_file_list">日志列表</string>
+    <string name="title_ble_devices" tools:ignore="ExtraTranslation">BLE Devices</string>
+
+    <string name="next">继续</string>
+    <string name="allow">同意</string>
+    <string name="deny">拒绝</string>
+    <string name="no_permission">权限不足</string>
+    <string name="no_permission_guide_media">需要打开录音和存储的权限</string>
+    <string name="no_permission_to_setting_ok">去设置</string>
+    <string name="no_permission_to_setting_cancel">取消</string>
+    <string name="no_permission_default">无权限</string>
+    <string name="no_permission_audio_record">需要录音权限</string>
+    <string name="no_permission_external_storage">需要存储权限</string>
+    <string name="no_permission_camera">需要拍照权限</string>
+    <string name="no_permission_read_phone_state">需要读取手机信息权限</string>
+    <string name="no_permission_location">需要位置权限</string>
+
+    <string name="dialog_action_ok">确定 </string>
+    <string name="dialog_action_cancel">取消</string>
+    <string name="dialog_action_url_error">下载地址不正确</string>
+    <string name="dialog_action_download_completed">下载完成后点击安装</string>
+    <string name="dialog_install_act_not_found">请打开系统应用“下载”，找到安装包点击安装</string>
+
+    <string name="rmb">¥</string>
+
+    <string name="error_reload_network">重新加载</string>
+    <string name="error_no_network_tip">无可用网络，请检查网络设置</string>
+    <string name="error_network_error_tip">数据获取失败</string>
+    <string name="error_no_data_tip">暂无数据</string>
+
+    <string name="tip_load_more_completed">没有更多了~</string>
+
+    <string name="request_recorder_permission">需要录音权限</string>
+    <string name="request_storage_permission">需要存储卡读写权限</string>
+    <string name="request_camera_permission">需要摄像头权限</string>
+    <string name="request_camera_permission_fail">无法获得摄像头权限，请在手机设置中打开权限</string>
+    <string name="request_location_permission">发现蓝牙设备需要定位权限</string>
+
+    <string name="media_cancel">取消</string>
+    <string name="media_ok">确定</string>
+    <string name="media_ok_t1" formatted="false">确定</string>
+    <string name="media_ok_t2" formatted="false">确定(%s)</string>
+    <string name="media_select_max_count" formatted="false">最多选择%d张图片！</string>
+
+</resources>

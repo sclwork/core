@@ -1,0 +1,333 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+          package="com.scliang.core">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- AliYun -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- BLE -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+
+    <!--<uses-permission android:name="getui.permission.GetuiService.${applicationId}" />-->
+    <!--<uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />-->
+    <!--<uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE" />-->
+
+    <!--<permission-->
+        <!--android:name="getui.permission.GetuiService.${applicationId}"-->
+        <!--android:protectionLevel="normal" />-->
+
+    <!--<permission-->
+        <!--android:name="${applicationId}.permission.JPUSH_MESSAGE"-->
+        <!--android:protectionLevel="signature" />-->
+
+    <!--<permission-->
+        <!--android:name="${applicationId}.permission.MIPUSH_RECEIVE"-->
+        <!--android:protectionLevel="signature" />-->
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+        <!-- base -->
+        <activity
+            android:name=".base.UniversalActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:configChanges="screenLayout|navigation|orientation|keyboardHidden|screenSize|locale|layoutDirection" />
+
+        <!--&lt;!&ndash; Universal Audio Play Service &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name=".media.UniversalAudioPlayService"-->
+            <!--android:label="SCore-Media-Service"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false"-->
+            <!--android:process=":media" />-->
+
+        <!-- Baidu Voice Recognition Service -->
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" />
+
+        <!--&lt;!&ndash; 个推SDK配置开始 &ndash;&gt;-->
+        <!--&lt;!&ndash; 配置的第三 参数属性 &ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="PUSH_APPID"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="${GETUI_APP_ID}" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="PUSH_APPKEY"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="${GETUI_APP_KEY}" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="PUSH_APPSECRET"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="${GETUI_APP_SECRET}" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash; 配置SDK核 服务 &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="com.igexin.sdk.PushService"-->
+            <!--android:exported="true"-->
+            <!--android:label="NotificationCenter"-->
+            <!--android:process=":push">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.igexin.sdk.action.service.message" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+
+        <!--<service-->
+            <!--android:name=".push.PushGeTuiService"-->
+            <!--android:process=":push" />-->
+
+        <!--<receiver-->
+            <!--android:name="com.igexin.sdk.PushReceiver"-->
+            <!--android:process=":push">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
+                <!--<action android:name="com.igexin.sdk.action.refreshls" />-->
+                <!--&lt;!&ndash; 以下三项为可选的action声明，可  提 service存活率和消息到达速度 &ndash;&gt;-->
+                <!--<action android:name="android.intent.action.MEDIA_MOUNTED" />-->
+                <!--<action android:name="android.intent.action.ACTION_POWER_CONNECTED" />-->
+                <!--<action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--<activity-->
+            <!--android:name="com.igexin.sdk.PushActivity"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:exported="false"-->
+            <!--android:process=":push"-->
+            <!--android:taskAffinity="com.igexin.sdk.PushActivityTask"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+
+        <!--<activity-->
+            <!--android:name="com.igexin.sdk.GActivity"-->
+            <!--android:excludeFromRecents="true"-->
+            <!--android:exported="true"-->
+            <!--android:process=":push"-->
+            <!--android:taskAffinity="com.igexin.sdk.PushActivityTask"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--&lt;!&ndash; 个推SDK配置结束 &ndash;&gt;-->
+
+
+        <!--&lt;!&ndash; ========================================================== &ndash;&gt;-->
+
+
+        <!--&lt;!&ndash; 极光SDK配置开始 &ndash;&gt;-->
+        <!--&lt;!&ndash; Required. For publish channel feature &ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="JPUSH_CHANNEL"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="developer-default" />&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; Required. AppKey copied from Portal &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="JPUSH_APPKEY"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="${JPUSH_APPKEY}" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash; Required SDK 核心功能&ndash;&gt;-->
+        <!--&lt;!&ndash; 可配置android:process参数将PushService放在其他进程中 &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="cn.jpush.android.service.PushService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false"-->
+            <!--android:process=":push">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.jpush.android.intent.REGISTER" />-->
+                <!--<action android:name="cn.jpush.android.intent.REPORT" />-->
+                <!--<action android:name="cn.jpush.android.intent.PushService" />-->
+                <!--<action android:name="cn.jpush.android.intent.PUSH_TIME" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+
+        <!--&lt;!&ndash; since 3.0.9 Required SDK 核心功能&ndash;&gt;-->
+        <!--<provider-->
+            <!--android:name="cn.jpush.android.service.DataProvider"-->
+            <!--android:authorities="${applicationId}.DataProvider"-->
+            <!--android:exported="true"-->
+            <!--android:process=":push" />-->
+
+        <!--&lt;!&ndash; since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 &ndash;&gt;-->
+        <!--&lt;!&ndash; 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 &ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="cn.jpush.android.service.DaemonService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true"-->
+            <!--android:process=":push">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.jpush.android.intent.DaemonService" />-->
+                <!--<category android:name="${applicationId}" />-->
+            <!--</intent-filter>-->
+        <!--</service>-->
+
+        <!--&lt;!&ndash; Required SDK核心功能&ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:name="cn.jpush.android.service.PushReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:process=":push">-->
+            <!--<intent-filter android:priority="1000">-->
+                <!--<action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />-->
+                <!--<category android:name="${applicationId}" />-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+            <!--</intent-filter>-->
+            <!--&lt;!&ndash; Optional &ndash;&gt;-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->
+                <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
+
+                <!--<data android:scheme="package" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--&lt;!&ndash; Required SDK核心功能&ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="cn.jpush.android.ui.PushActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden"-->
+            <!--android:exported="false"-->
+            <!--android:process=":push"-->
+            <!--android:theme="@android:style/Theme.NoTitleBar">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.jpush.android.ui.PushActivity" />-->
+
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="${applicationId}" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--&lt;!&ndash; SDK核心功能&ndash;&gt;-->
+        <!--<activity-->
+            <!--android:name="cn.jpush.android.ui.PopWinActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden"-->
+            <!--android:exported="false"-->
+            <!--android:process=":push"-->
+            <!--android:theme="@style/MyDialogStyle">-->
+            <!--<intent-filter>-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="${applicationId}" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <!--&lt;!&ndash; Required SDK核心功能&ndash;&gt;-->
+        <!--<service-->
+            <!--android:name="cn.jpush.android.service.DownloadService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false"-->
+            <!--android:process=":push" />-->
+
+        <!--&lt;!&ndash; Required SDK核心功能&ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:name="cn.jpush.android.service.AlarmReceiver"-->
+            <!--android:process=":push" />-->
+
+        <!--&lt;!&ndash; Required since 3.0.7 &ndash;&gt;-->
+        <!--&lt;!&ndash; 新的tag/alias接口结果返回需要开发者配置一个自定的广播 &ndash;&gt;-->
+        <!--&lt;!&ndash; 该广播需要继承JPush提供的JPushMessageReceiver类, 并如下新增一个 Intent-Filter &ndash;&gt;-->
+        <!--&lt;!&ndash; User defined. 用户自定义的广播接收器&ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:name=".push.PushJReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:process=":push">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />-->
+                <!--&lt;!&ndash;Required 用户注册SDK的intent&ndash;&gt;-->
+                <!--<action android:name="cn.jpush.android.intent.REGISTRATION" />-->
+                <!--&lt;!&ndash;Required 用户接收SDK消息的intent&ndash;&gt;-->
+                <!--<action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />-->
+                <!--&lt;!&ndash;Required 用户接收SDK通知栏信息的intent&ndash;&gt;-->
+                <!--<action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />-->
+                <!--&lt;!&ndash;Required 用户打开自定义通知栏的intent&ndash;&gt;-->
+                <!--<action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />-->
+                <!--&lt;!&ndash; 接收网络变化 连接/断开 since 1.6.3 &ndash;&gt;-->
+                <!--<action android:name="cn.jpush.android.intent.CONNECTION" />-->
+                <!--<category android:name="${applicationId}" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <!--&lt;!&ndash; 极光SDK配置结束 &ndash;&gt;-->
+
+        <!--&lt;!&ndash; 小米推送SDK配置开始 &ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="MIPUSH_APP_ID"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="${MIPUSH_APP_ID}" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<meta-data&ndash;&gt;-->
+            <!--&lt;!&ndash;android:name="MIPUSH_APP_KEY"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:value="${MIPUSH_APP_KEY}" />&ndash;&gt;-->
+
+        <!--<service-->
+            <!--android:enabled="true"-->
+            <!--android:process=":push"-->
+            <!--android:name="com.xiaomi.push.service.XMPushService" />-->
+        <!--<service-->
+            <!--android:name="com.xiaomi.push.service.XMJobService"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="false"-->
+            <!--android:permission="android.permission.BIND_JOB_SERVICE"-->
+            <!--android:process=":push" />-->
+        <!--&lt;!&ndash;注：此service必须在3.0.1版本以后（包括3.0.1版本）加入&ndash;&gt;-->
+        <!--<service-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true"-->
+            <!--android:process=":push"-->
+            <!--android:name="com.xiaomi.mipush.sdk.PushMessageHandler" />-->
+        <!--<service-->
+            <!--android:enabled="true"-->
+            <!--android:process=":push"-->
+            <!--android:name="com.xiaomi.mipush.sdk.MessageHandleService" />-->
+        <!--&lt;!&ndash;注：此service必须在2.2.5版本以后（包括2.2.5版本）加入&ndash;&gt;-->
+        <!--<receiver-->
+            <!--android:exported="true"-->
+            <!--android:process=":push"-->
+            <!--android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <!--<receiver-->
+            <!--android:exported="false"-->
+            <!--android:process=":push"-->
+            <!--android:name="com.xiaomi.push.service.receivers.PingReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.xiaomi.push.PING_TIMER" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <!--<receiver-->
+            <!--android:name=".push.PushMiReceiver"-->
+            <!--android:process=":push"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.xiaomi.mipush.ERROR" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <!--&lt;!&ndash; 小米推送SDK配置结束 &ndash;&gt;-->
+
+    </application>
+
+</manifest>

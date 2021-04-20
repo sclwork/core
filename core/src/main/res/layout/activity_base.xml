@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scliang.core.base.RootContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_base">
+
+    <!-- Content Container -->
+    <com.scliang.core.base.ContentContainer
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Content Context: setContentView -->
+        <com.scliang.core.base.ContentContext
+            android:id="@+id/container_context"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Content Mask: setMaskView -->
+        <com.scliang.core.base.ContentMask
+            android:id="@+id/container_mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/container_load_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+    </com.scliang.core.base.ContentContainer>
+
+    <!-- Toolbar Container -->
+    <com.scliang.core.base.ToolbarContainer
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_base_bar"
+        android:orientation="vertical">
+
+        <!-- Toolbar Container -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Toolbar -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                android:minHeight="@dimen/toolbar_height" />
+
+            <!-- Toolbar Action -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toolbar_height"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/toolbar_left_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical|left" />
+
+                <FrameLayout
+                    android:id="@+id/toolbar_center_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="@dimen/toolbar_height"
+                    android:layout_marginRight="@dimen/toolbar_height" />
+
+                <FrameLayout
+                    android:id="@+id/toolbar_right_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical|right" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <!-- Toolbar Bottom Line -->
+        <View
+            android:id="@+id/toolbar_bottom_line"
+            style="@style/Line.H"
+            android:visibility="gone" />
+
+    </com.scliang.core.base.ToolbarContainer>
+
+</com.scliang.core.base.RootContainer>

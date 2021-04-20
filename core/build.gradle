@@ -1,0 +1,149 @@
+apply plugin: 'maven'
+apply plugin: 'com.android.library'
+
+def getRepositoryUsername() {
+    return 'admin'
+}
+def getRepositoryPassword() {
+    return 'admin123'
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.groupId = GROUP
+                pom.artifactId = S_ARTIFACT_ID
+                pom.version = VersionName
+                repository(url: S_URL) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+                snapshotRepository(url: S_URL) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+            }
+//            mavenDeployer {
+//                pom.groupId = GROUP
+//                pom.artifactId = D_ARTIFACT_ID
+//                pom.version = VersionName
+//                repository(url: D_URL) {
+//                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+//                }
+//                snapshotRepository(url: D_URL) {
+//                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+//                }
+//            }
+        }
+    }
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+    artifacts {
+        archives androidSourcesJar
+    }
+}
+
+android {
+    compileSdkVersion project.properties.CompileSdkVersion as int
+    buildToolsVersion project.properties.BuildToolsVersion as String
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion project.properties.MinSdkVersion as int
+        targetSdkVersion project.properties.TargetSdkVersion as int
+        versionCode project.properties.VersionCode as int
+        versionName project.properties.VersionName as String
+
+        multiDexEnabled true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions"
+            }
+        }
+
+        ndk {
+            abiFilters /*'armeabi', */'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'/*, 'mips', 'mips64'*/
+        }
+
+//        // for push
+//        manifestPlaceholders += [
+//                GETUI_APP_ID : "",
+//                GETUI_APP_KEY : "",
+//                GETUI_APP_SECRET : "",
+//
+//                JPUSH_APPKEY : "",
+//
+//                MIPUSH_APP_ID : "",
+//                MIPUSH_APP_KEY : "",
+//        ]
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        beta {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'androidx.multidex:multidex:2.0.1'
+    //noinspection GradleCompatible
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'com.google.android.material:material:1.1.0'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
+    api 'com.squareup.okhttp3:okhttp:4.7.2'
+    api 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    api 'com.squareup.retrofit2:retrofit:2.9.0'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.facebook.fresco:fresco:1.5.0'
+    api 'com.facebook.fresco:imagepipeline-okhttp3:0.11.0'
+    api 'com.facebook.stetho:stetho:1.5.1'
+    api 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    api 'com.orhanobut:logger:2.2.0'
+    api 'com.jakewharton:disklrucache:2.0.2'
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.8'
+    api 'id.zelory:compressor:2.1.0'
+    api 'com.umeng.sdk:common:1.5.3'
+    api 'com.umeng.sdk:analytics:7.5.3'
+    api 'com.tencent.bugly:crashreport:3.2.33'
+    api 'com.aliyun.dpa:oss-android-sdk:2.9.3'
+//    api 'org.tensorflow:tensorflow-lite:1.9.0'
+    api 'com.airbnb.android:lottie:3.4.1'
+    api 'com.danikula:videocache:2.7.1'
+}
